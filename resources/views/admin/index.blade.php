@@ -1,12 +1,12 @@
-@extends(admin.layouts.master")
+@extends('admin.layouts.master')
 
-@section("head-tag")
-    <title>داشبورد اصلی</title>
+@section('head-tag')
+<title>داشبورد اصلی</title>
 @endsection
 
-    @section("content")
-            <section class="row">
+@section('content')
 
+            <section class="row">
                 <section class="col-lg-3 col-md-6 col-12">
                     <a href="#" class="text-decoration-none d-block mb-4">
                         <section class="card bg-custom-yellow text-white">
@@ -201,4 +201,6 @@
                     </section>
                 </section>
             </section>
-    @endsection
+
+            @endsection
+
