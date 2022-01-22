@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Market\CategoryController;
 use App\Http\Controllers\Admin\Market\BrandController;
 use App\Http\Controllers\Admin\Market\CommentController;
 use App\Http\Controllers\Admin\Market\DeliveryController;
+use App\Http\Controllers\Admin\Market\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ use App\Http\Controllers\Admin\Market\DeliveryController;
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
 
-    Route::get('/s', 'AdminDashboardController@index')->name('admin.home');
+    Route::get('/', 'AdminDashboardController@index')->name('admin.home');
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.home');
 
     Route::prefix('market')->namespace('Market')->group(function(){
@@ -66,6 +67,15 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
             Route::get('/edit/{id}', [CommentController::class, 'edit'])->name('admin.market.comment.edit');
             Route::put('/update/{id}', [CommentController::class, 'update'])->name('admin.market.comment.update');
             Route::delete('/destroy/{id}', [CommentController::class, 'destroy'])->name('admin.market.comment.destroy');
+    });
+        //discount
+        Route::prefix('discount')->group(function(){
+            Route::get('/copan', [DiscountController::class, 'copan'])->name('admin.market.discount.copan');
+            Route::get('/copan/create', [DiscountController::class, 'copanCreate'])->name('admin.market.discount.copan.create');
+            Route::get('/common-discount', [DiscountController::class, 'commonDiscount'])->name('admin.market.discount.commonDiscount');
+            Route::get('/common-discount/create', [DiscountController::class, 'commonDiscountCreate'])->name('admin.market.discount.commonDiscount.create');
+            Route::get('/amazing-sale', [DiscountController::class, 'amazingSale'])->name('admin.market.discount.amazingSale');
+            Route::get('/amazing-sale/create', [DiscountController::class, 'amazingSaleCreate'])->name('admin.market.discount.amazingSale.create');
     });
     });
 });
