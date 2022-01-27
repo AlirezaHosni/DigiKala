@@ -19,7 +19,7 @@
                     <a href="{{ route('admin.market.category.index') }}">دسته بندی</a>
                     <a href="#">فرم کالا</a>
                     <a href="{{ route('admin.market.brand.index') }}">برندها</a>
-                    <a href="#">کالاها</a>
+                    <a href="{{ route('admin.market.product.index') }}">کالاها</a>
                     <a href="#">انبار</a>
                     <a href="{{ route('admin.market.comment.index') }}">نظرات</a>
                 </section>
@@ -32,7 +32,7 @@
                     <i class="fas fa-angle-left angle"></i>
                 </section>
                 <section class="sidebar-dropdown">
-                    <a href="{{ route('admin.market.order.newOrder') }}"> جدید</a>
+                    <a href="{{ route('admin.market.order.newOrders') }}"> جدید</a>
                     <a href="{{ route('admin.market.order.sending') }}">در حال ارسال</a>
                     <a href="{{ route('admin.market.order.unpaid') }}">پرداخت نشده</a>
                     <a href="{{ route('admin.market.order.canceled') }}">باطل شده</a>
@@ -48,10 +48,10 @@
                     <i class="fas fa-angle-left angle"></i>
                 </section>
                 <section class="sidebar-dropdown">
-                    <a href="#">تمام پرداخت ها</a>
-                    <a href="#">پرداخت های آنلاین</a>
-                    <a href="#">پرداخت های آفلاین</a>
-                    <a href="#">پرداخت در محل</a>
+                    <a href="{{ route('admin.market.payment.index') }}">تمام پرداخت ها</a>
+                    <a href="{{ route('admin.market.payment.online') }}">پرداخت های آنلاین</a>
+                    <a href="{{ route('admin.market.payment.offline') }}">پرداخت های آفلاین</a>
+                    <a href="{{ route('admin.market.payment.attendance') }}">پرداخت در محل</a>
                 </section>
             </section>
 
