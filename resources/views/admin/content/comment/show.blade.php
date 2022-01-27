@@ -9,7 +9,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
-      <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
+      <li class="breadcrumb-item font-size-12"> <a href="#">بخش محتوی</a></li>
       <li class="breadcrumb-item font-size-12"> <a href="#">نظرات </a></li>
       <li class="breadcrumb-item font-size-12 active" aria-current="page">  نمایش نظرات</li>
     </ol>
@@ -26,7 +26,7 @@
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('admin.market.comment.index') }}" class="btn btn-info btn-sm">بازگشت</a>
+                <a href="{{ route('admin.content.comment.index') }}" class="btn btn-info btn-sm">بازگشت</a>
             </section>
 
             <section class="card mb-3">
