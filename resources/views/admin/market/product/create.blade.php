@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('head-tag')
-<title>کالاها</title>
+<title>کالا</title>
 @endsection
 
 @section('content')
@@ -10,7 +10,8 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
       <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
-      <li class="breadcrumb-item font-size-12 active" aria-current="page"> کالاها</li>
+      <li class="breadcrumb-item font-size-12"> <a href="#">کالا </a></li>
+      <li class="breadcrumb-item font-size-12 active" aria-current="page"> ایجاد کالا جدید</li>
     </ol>
   </nav>
 
@@ -20,86 +21,100 @@
         <section class="main-body-container">
             <section class="main-body-container-header">
                 <h5>
-                 کالاها
+                  ایجاد کالا
                 </h5>
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('admin.market.product.create') }}" class="btn btn-info btn-sm">ایجاد کالای جدید </a>
-                <div class="max-width-16-rem">
-                    <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
-                </div>
+                <a href="{{ route('admin.market.product.index') }}" class="btn btn-info btn-sm">بازگشت</a>
             </section>
 
-            <section class="table-responsive">
-                <table class="table table-striped table-hover h-150px">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>نام کالا</th>
-                            <th> تصویر کالا</th>
-                            <th> قیمت</th>
-                            <th>وزن </th>
-                            <th>دسته </th>
-                            <th>فرم</th>
-                            <th class="max-width-16-rem text-center"><i class="fa fa-cogs"></i> تنظیمات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>گوشی ایفون ۱۲</td>
-                            <td><img src="{{ asset('admin-assets/images/avatar-2.jpg') }}"  alt="" class="max-height-2rem"></td>
-                            <td>12,000,000 تومان</td>
-                            <td>۱ کیلو</td>
-                            <td>کالا الکترونیکی</td>
-                            <td>اندازه نمایشگر</td>
-                            <td class="width-8-rem text-left">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-success btn-sm btn-block dorpdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-tools"></i> عملیات
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a href="" class="dropdown-item text-right"><i class="fa fa-images"></i> گالری</a>
-                                        <a href="" class="dropdown-item text-right"><i class="fa fa-list-ul"></i> قرم کالا</a>
-                                        <a href="" class="dropdown-item text-right"><i class="fa fa-edit"></i> ویرایش</a>
-                                        <form action="" method="POST">
-                                            <button type="submit" class="dropdown-item text-right"><i class="fa fa-window-close"></i> حذف</button>
-                                        </form>
+            <section>
+                <form action="" method="">
+                    <section class="row">
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">نام کالا</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div>
+                        </section>
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">دسته والد</label>
+                                <select name="" id="" class="form-control form-control-sm">
+                                    <option value="">دسته را انتخاب کنید</option>
+                                    <option value="">وسایل الکترونیکی</option>
+                                </select>
+                            </div>
+                        </section>
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">فرم کالا</label>
+                                <select name="" id="" class="form-control form-control-sm">
+                                    <option value="">فرم کالا را انتخاب کنید</option>
+                                    <option value="">وسایل الکترونیکی</option>
+                                </select>
+                            </div>
+                        </section>
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">تصویر</label>
+                                <input type="file" class="form-control form-control-sm">
+                            </div>
+                        </section>
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">قیمت کالا</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div>
+                        </section>
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">وزن کالا</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div>
+                        </section>
+                        <section class="col-12">
+                            <div class="form-group">
+                                <label for="">توضیحات</label>
+                                <textarea name="" id="body" cols="30" rows="6" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </section>
+                        <section class="col-12" class="border-top border-bottom py-3 mb-3">
+                            <section class="row">
+                                <section class="col-6 col-md-3">
+                                    <div class="form-group" >
+                                        <input type="text" class="form-control form-control-sm" placeholder="ویژگی">
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>گوشی ایفون ۱۲</td>
-                            <td><img src="{{ asset('admin-assets/images/avatar-2.jpg') }}"  alt="" class="max-height-2rem"></td>
-                            <td>12,000,000 تومان</td>
-                            <td>۱ کیلو</td>
-                            <td>کالا الکترونیکی</td>
-                            <td>اندازه نمایشگر</td>
-                            <td class="width-8-rem text-left">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-success btn-sm btn-block dorpdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-tools"></i> عملیات
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a href="" class="dropdown-item text-right"><i class="fa fa-images"></i> گالری</a>
-                                        <a href="" class="dropdown-item text-right"><i class="fa fa-list-ul"></i> قرم کالا</a>
-                                        <a href="" class="dropdown-item text-right"><i class="fa fa-edit"></i> ویرایش</a>
-                                        <form action="" method="POST">
-                                            <button type="submit" class="dropdown-item text-right"><i class="fa fa-window-close"></i> حذف</button>
-                                        </form>
+                                </section>
+                                <section class="col-6 col-md-3">
+                                    <div class="form-group" >
+                                        <input type="text" class="form-control form-control-sm"
+                                        placeholder="مقدار">
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </section>
+                                <section class="col-12">
+                                    <button class="btn btn-success btn-sm">افزودن</button>
+                                </section>
+                            </section>
+                        <section class="col-12">
+                            <button class="btn btn-primary btn-sm">ثبت</button>
+                        </section>
+                    </section>
+                </form>
             </section>
 
         </section>
     </section>
 </section>
+
+@endsection
+
+@section('script')
+
+<script src="{{ asset('admin-assets/ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace('body');
+</script>
 
 @endsection
