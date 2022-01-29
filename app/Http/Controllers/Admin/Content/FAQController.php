@@ -14,7 +14,7 @@ class FAQController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.content.faq.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class FAQController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.content.faq.create');
     }
 
     /**
