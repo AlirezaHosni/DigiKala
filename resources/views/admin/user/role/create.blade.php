@@ -89,13 +89,13 @@
                                         <label for="check6" class="form-check-label mr-3 mt-1">ایجاد کالا جدید</label>
                                     </div>
                                 </section>
-                                   <section class="col-md-3">
+                                   <section class="col-12 col-md-3">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="" id="check7" checked>\
                                         <label for="check7" class="form-check-label mr-3 mt-1">ویرایش کالا جدید</label>
                                     </div>
                                 </section>
-                                   <section class="col-md-3">
+                                   <section class="col-12 col-md-3">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="" id="check8" checked>\
                                         <label for="check8" class="form-check-label mr-3 mt-1">حذف کالا جدید</label>
