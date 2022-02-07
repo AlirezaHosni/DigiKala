@@ -93,7 +93,7 @@
                                         placeholder="مقدار">
                                     </div>
                                 </section>
-                                <section class="col-12">
+                                <section class="col-12 col-md-3">
                                     <button class="btn btn-success btn-sm">افزودن</button>
                                 </section>
                             </section>
