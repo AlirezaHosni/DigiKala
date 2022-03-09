@@ -32,7 +32,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('copan_id')->nullable()->constrained('copans')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('copan_object');
             $table->decimal('order_copan_discount_amount', 20, 3)->nullable();
-            $table->foreignId('common_discount_id')->nullable()->constrained('common_discounts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('common_discount_id')->nullable()->constrained('common_discount')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('common_discount_object');
             $table->decimal('order_common_discount_amount', 20, 3)->nullable();
             $table->decimal('order_total_products_discount_amount', 20, 3)->nullable();
