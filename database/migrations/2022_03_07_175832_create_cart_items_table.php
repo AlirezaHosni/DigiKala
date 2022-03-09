@@ -17,7 +17,7 @@ class CreateCartItemsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('color_id')->nullable()->nullable()->constrained('product_colors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('color_id')->nullable()->nullable()->constrained('colors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('guarantee_id')->nullable()->nullable()->constrained('guarantees')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('number')->default(1);
             $table->tinyInteger('status')->default(0);
