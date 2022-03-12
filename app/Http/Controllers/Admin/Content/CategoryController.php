@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $postCategories = PostCategory::orderBy('created_at', 'desc')->simplePaginate(15);
+//        $postCategories[0]['status'] = 1;
         return view('admin.content.category.index', compact('postCategories'));
     }
 
@@ -57,9 +58,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PostCategory $postCategory)
     {
-        //
+//        dd($postCategory);
     }
 
     /**
@@ -78,10 +79,11 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PostCategory $postCategory)
     {
-        //
+//        $result = $postCategory->delete();
+        return redirect()->route('admin.content.category.index');
     }
 }

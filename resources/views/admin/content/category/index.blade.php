@@ -41,6 +41,7 @@
                             <th>اسلاگ</th>
                             <th>عکس</th>
                             <th>تگ‌ها</th>
+                            <th>وضعیت</th>
                             <th class="max-width-16-rem text-center"><i class="fa fa-cogs"></i> تنظیمات</th>
                         </tr>
                     </thead>
@@ -53,9 +54,18 @@
                                 <td>{{ $postCategory->slug }}</td>
                                 <td><img src="{{ asset($postCategory->image) }}" alt="" width="50px" height="50px"></td>
                                 <td>{{ $postCategory->tags }}</td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" @if($postCategory->status === 1) checked @endif>
+                                    </label>
+                                </td>
                                 <td class="width-16-rem text-left">
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
-                                    <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash-alt"></i> حذف</button>
+                                    <a href="{{ route('admin.content.category.edit', $postCategory->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
+                                    <form class="d-inline" action="{{ route('admin.content.category.destroy', $postCategory->id) }}" method="post">
+                                        @csrf
+                                        {{ method_field('delete') }}
+                                        <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash-alt"></i> حذف</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
