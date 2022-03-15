@@ -30,7 +30,7 @@
             </section>
 
             <section>
-                <form action="{{ route('admin.content.category.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.content.category.store') }}" method="post" enctype="multipart/form-data" id="form">
                     @csrf
                     <section class="row">
 
@@ -51,7 +51,10 @@
                         <section class="col-12 col-md-6 my-2">
                             <div class="form-group">
                                 <label for="tags">تگ‌ها</label>
-                                <input type="text" class="form-control form-control-sm" name="tags" id="tags" value="{{ old('tags') }}">
+                                <input type="hidden" class="form-control form-control-sm" name="tags" id="tags" value="{{ old('tags') }}">
+                                <select class="select2 form-control form-control-sm" id="select_tags" multiple>
+
+                                </select>
                             </div>
                             @error('tags')
                             <span class="alert-required bg-danger text-white rounded">
@@ -126,6 +129,25 @@
     <script src="{{ asset('admin-assets/ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('description');
+    </script>
+    <script>
+        $(document).ready(function (){
+            var tags_input = $('#tags');
+            var select_tags  = $('#select_tags');
+            select_tags.select2({
+                placeholder : 'لطفا تگ‌های خود را وارد نمایید',
+                tags : true
+            });
+
+        // alert(select_tags);
+        $('#form').submit(function (event){
+            if (select_tags.val() !== null && select_tags.val().length > 0){
+                var selectedSource = select_tags.val().join(',');
+                //    with above codes tags converted from array to string
+                tags_input.val(selectedSource)
+            }
+        })
+        })
     </script>
 
 @endsection
