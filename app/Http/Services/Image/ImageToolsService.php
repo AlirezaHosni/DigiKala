@@ -113,7 +113,7 @@ class ImageToolsService{
         $this->setFinalImageName($this->getImageName() . '.' . $this->getImageFormat());
 
 
-        //check adn create final image directory
+        //check and create final image directory
         $this->checkDirectory($this->getFinalImageDirectory());
     }
 
