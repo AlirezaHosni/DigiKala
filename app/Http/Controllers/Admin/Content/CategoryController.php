@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Content\PostCategoryRequest;
+use App\Http\Services\Image\ImageService;
 use App\Models\Content\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -38,11 +39,25 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(PostCategoryRequest $request)
+    public function store(PostCategoryRequest $request, ImageService $imageService)
     {
         $inputs = $request->all();
         // $inputs['slug'] = str_replace(' ', '-', $inputs['name']) . '-' . Str::random(5);
-        $inputs['image'] = 'image';
+        if ($request->hasFile('image'))
+        {
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post-category');
+//            $result = $imageService->save($request->file('image'));
+//            $result = $imageService->fitAndSave($request->file('image'), 600, 150);
+//            exit;
+            $result = $imageService->createAndSave($request->file('image'));
+
+        }
+        if ($result === false)
+        {
+            return redirect()->route('admin.content.category.index')->with('swal-error', 'آپلود عکس با خطا مواجه شد');
+        }
+
+        $inputs['image'] = $result;
         PostCategory::create($inputs);
         return redirect()->route('admin.content.category.index')->with('swal-success', 'دسته‌بندی جدید با موفقیت اضافه شد')
             ->with('toast-success', 'دسته‌بندی جدید با موفقیت اضافه شد')->with('alert-section-success', 'دسته‌بندی جدید با موفقیت اضافه شد');
@@ -99,7 +114,7 @@ class CategoryController extends Controller
 
     public function status(PostCategory $postCategory)
     {
-    
+
         $postCategory->status = $postCategory->status == 0 ? 1 : 0;
         $result = $postCategory->save();
 

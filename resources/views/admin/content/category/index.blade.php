@@ -54,7 +54,7 @@
                                 <td>{{ $postCategory->name }}</td>
                                 <td>{{ $postCategory->description }}</td>
                                 <td>{{ $postCategory->slug }}</td>
-                                <td><img src="{{ asset($postCategory->image) }}" alt="" width="50px" height="50px"></td>
+                                <td><img src="{{ asset($postCategory->image['indexArray'][$postCategory->image['currentImage']]) }}" alt="" width="50px" height="50px"></td>
                                 <td>{{ $postCategory->tags }}</td>
                                 <td>
                                     <label>
@@ -130,7 +130,7 @@
                     errorToast("ارتباط برقرار نشد")
                 }
             });
-            
+
             function successToast(message){
 
                 var successToastTag = '<section class="toast" data-delay="5000">\n'+

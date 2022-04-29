@@ -40,10 +40,10 @@ class ImageService extends ImageToolsService
         return $result ? $this->getImageAddress() : false ;
     }
 
-    public function createAndSave($image): bool
+    public function createAndSave($image)
     {
         // get data from config
-        $imageSizes = Config::get('image.index-image-sizes');
+        $imageSizes = Config('image.index-image-sizes');
 
         //set image
         $this->setImage($image);
@@ -67,7 +67,8 @@ class ImageService extends ImageToolsService
             $this->provider();
 
             // save image
-            $result = Image::make($image->getRealPath())->fit($imageSize['width'], $imageSize['height'])->save(public_path($this->getImageAddress()), null, $this->getImageFormat()); // laravel and modern php
+            $result = Image::make($image->getRealPath())->fit($imageSize['width'], $imageSize['height'])
+                ->save(public_path($this->getImageAddress()), null, $this->getImageFormat());
 
             if ($result)
                 $indexArray[$sizeAliases] = $this->getImageAddress();
@@ -75,11 +76,11 @@ class ImageService extends ImageToolsService
                 return false;
         }
 
-        $image['indexArray'] = $indexArray;
-        $image['directory'] = $this->getFinalImageDirectory();
-        $image['currentImage'] = Config::get('image.default-current-index-image');
+        $images['indexArray'] = $indexArray;
+        $images['directory'] = $this->getFinalImageDirectory();
+        $images['currentImage'] = Config('image.default-current-index-image');
 
-        return $image;
+        return $images;
     }
 
     public function deleteImage($imagePath)

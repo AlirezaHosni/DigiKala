@@ -20,11 +20,13 @@ class PostCategory extends Model
         'tags',
     ];
 
+    protected $casts = ['image' => 'array'];
+
     public function sluggable(): array
     {
         return
          ['slug' =>[
             'source' => 'name'
-        ]]; 
+        ]];
     }
 }
