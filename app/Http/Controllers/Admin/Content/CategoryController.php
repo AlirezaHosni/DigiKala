@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
 //        $cacheImage = new ImageCacheService();
-//        return $cacheImage->cache(public_path('pojdj'));
+//        return $cacheImage->cache('photo.jpg', 'large');
 
         $postCategories = PostCategory::orderBy('created_at', 'desc')->simplePaginate(15);
 //        $postCategories[0]['status'] = 1;
@@ -96,10 +96,32 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(PostCategoryRequest $request, PostCategory $postCategory)
+    public function update(PostCategoryRequest $request, PostCategory $postCategory, ImageService $imageService)
     {
         $inputs = $request->all();
-        $inputs['image'] = 'image';
+
+        if ($request->hasFile('image'))
+        {
+            if (!empty($postCategory->image))
+                $imageService->deleteDirectoryAndFiles($postCategory->image['directory']);
+
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post-category');
+            $result = $imageService->createAndSave($request->file('image'));
+
+            if ($result === false)
+            {
+                return redirect()->route('admin.content.category.index')->with('swal-error', 'آپلود عکس با خطا مواجه شد');
+            }
+            $inputs['image'] = $result;
+        }else
+        {
+            if (!empty($postCategory->image) && isset($inputs['currentImage']))
+            {
+                $image = $postCategory->image;
+                $image['currentImage'] = $inputs['currentImage'];
+                $inputs['image'] = $image;
+            }
+        }
         $postCategory->update($inputs);
         return redirect()->route('admin.content.category.index')->with('swal-success', 'دسته‌بندی با موفقیت ویرایش شد');
     }

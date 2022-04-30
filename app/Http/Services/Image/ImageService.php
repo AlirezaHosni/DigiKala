@@ -105,7 +105,7 @@ class ImageService extends ImageToolsService
         }
 
         // find images
-        $files = glob($directory . DIRECTORY_SEPARATOR . '*' . GLOB_MARK);
+        $files = glob($directory . DIRECTORY_SEPARATOR . '*' , GLOB_MARK);
         foreach ($files as $file)
         {
             if (is_dir($file))
