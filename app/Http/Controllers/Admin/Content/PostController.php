@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content\Post;
+use App\Models\Content\PostCategory;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,11 +23,12 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.content.post.create');
+        $postCategories = PostCategory::all();
+        return view('admin.content.post.create', compact('postCategories'));
     }
 
     /**
