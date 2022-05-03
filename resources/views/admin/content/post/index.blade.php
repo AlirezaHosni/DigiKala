@@ -48,9 +48,9 @@
                             <th>{{ $key+=1 }}</th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->postCategory->name }}</td>
-{{--                            <td>--}}
-{{--                                <img src="{{ asset($post->image['indexArray'][$post->image['currentImage']]) }}" alt="" width="50px" height="50px">--}}
-{{--                            </td>--}}
+                            <td>
+                                <img src="{{ asset($post->image['indexArray'][$post->image['currentImage']]) }}" alt="" width="50px" height="50px">
+                            </td>
                             <td class="width-16-rem text-left">
                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash-alt"></i> حذف</button>

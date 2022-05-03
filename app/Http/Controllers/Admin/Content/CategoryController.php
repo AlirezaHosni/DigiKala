@@ -53,15 +53,15 @@ class CategoryController extends Controller
 //            $result = $imageService->save($request->file('image'));
 //            $result = $imageService->fitAndSave($request->file('image'), 600, 150);
 //            exit;
-            $result = $imageService->createAndSave($request->file('image'));
+            $result = $imageService->createIndexAndSave($request->file('image'));
 
-        }
-        if ($result === false)
-        {
-            return redirect()->route('admin.content.category.index')->with('swal-error', 'آپلود عکس با خطا مواجه شد');
+            if ($result === false)
+            {
+                return redirect()->route('admin.content.category.index')->with('swal-error', 'آپلود عکس با خطا مواجه شد');
+            }
+            $inputs['image'] = $result;
         }
 
-        $inputs['image'] = $result;
         PostCategory::create($inputs);
         return redirect()->route('admin.content.category.index')->with('swal-success', 'دسته‌بندی جدید با موفقیت اضافه شد')
             ->with('toast-success', 'دسته‌بندی جدید با موفقیت اضافه شد')->with('alert-section-success', 'دسته‌بندی جدید با موفقیت اضافه شد');
@@ -106,7 +106,7 @@ class CategoryController extends Controller
                 $imageService->deleteDirectoryAndFiles($postCategory->image['directory']);
 
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post-category');
-            $result = $imageService->createAndSave($request->file('image'));
+            $result = $imageService->createIndexAndSave($request->file('image'));
 
             if ($result === false)
             {

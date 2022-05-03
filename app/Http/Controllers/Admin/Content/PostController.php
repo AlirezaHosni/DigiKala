@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Content\PostRequest;
+use App\Http\Services\Image\ImageService;
 use App\Models\Content\Post;
 use App\Models\Content\PostCategory;
 use Illuminate\Http\Request;
@@ -35,11 +37,30 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request, ImageService $imageService)
     {
-        //
+        $inputs = $request->all();
+
+        // date fixed
+        $realTimestampStart = substr($request->published_at, 0 , 10);
+        $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
+
+        if ($request->hasFile('image'))
+        {
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'posts');
+            $result = $imageService->createIndexAndSave($request->file('image'));
+
+            if ($result === false)
+            {
+                return redirect()->route('admin.content.post.index')->with('swal-error', 'آپلود عکس با خطا مواجه شد');
+            }
+            $inputs['image'] = $result;
+        }
+        $inputs['author_id'] = 1;
+        $post = Post::create($inputs);
+        return redirect()->route('admin.content.post.index')->with('swal-success', 'پست جدید با موفقیت اضافه شد');
     }
 
     /**

@@ -40,7 +40,7 @@ class ImageService extends ImageToolsService
         return $result ? $this->getImageAddress() : false ;
     }
 
-    public function createAndSave($image)
+    public function createIndexAndSave($image)
     {
         // get data from config
         $imageSizes = Config('image.index-image-sizes');
