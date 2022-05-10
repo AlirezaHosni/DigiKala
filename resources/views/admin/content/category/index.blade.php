@@ -71,24 +71,6 @@
                                 </td>
                             </tr>
                         @endforeach
-{{--                        <tr>--}}
-{{--                            <th>2</th>--}}
-{{--                            <td>نمایشگر	</td>--}}
-{{--                            <td>کالای الکترونیکی</td>--}}
-{{--                            <td class="width-16-rem text-left">--}}
-{{--                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>--}}
-{{--                                <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash-alt"></i> حذف</button>--}}
-{{--                            </td>--}}
-{{--                        </tr>--}}
-{{--                        <tr>--}}
-{{--                            <th>3</th>--}}
-{{--                            <td>نمایشگر	</td>--}}
-{{--                            <td>کالای الکترونیکی</td>--}}
-{{--                            <td class="width-16-rem text-left">--}}
-{{--                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>--}}
-{{--                                <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash-alt"></i> حذف</button>--}}
-{{--                            </td>--}}
-{{--                        </tr>--}}
                     </tbody>
                 </table>
             </section>
