@@ -29,7 +29,7 @@ class PostCategoryRequest extends FormRequest
                 'description' => 'required|max:500|min:5|regex:/^[a-zA-Z\-۰-۹0-9ء-ي.ا-ی><\/&;\n\r ]+$/u',
                 'image' => 'required|image|mimes:png,jpg,jpeg,gif',
                 'status' => 'required|numeric|in:0,1',
-                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
+                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی,]+$/u',
             ];
         }
         else {
@@ -38,7 +38,7 @@ class PostCategoryRequest extends FormRequest
                 'description' => 'required|max:500|min:5|regex:/^[a-zA-Z\-۰-۹0-9ء-ي.ا-ی><\/&;\n\r ]+$/u',
                 'image' => 'image|mimes:png,jpg,jpeg,gif',
                 'status' => 'required|numeric|in:0,1',
-                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
+                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9,ء-ي. ا-ی]+$/u',
             ];
         }
     }

@@ -31,7 +31,7 @@ class PostRequest extends FormRequest
                 'category_id' => 'required|min:1|regex:/^[0-9]+$/u|exists:post_categories,id',
                 'image' => 'required|image|mimes:png,jpg,jpeg,gif',
                 'status' => 'required|numeric|in:0,1',
-                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
+                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9,ء-ي. ا-ی]+$/u',
                 'published_at' => 'required|numeric'
             ];
         }
@@ -43,7 +43,7 @@ class PostRequest extends FormRequest
                 'category_id' => 'required|min:1|regex:/^[0-9]+$/u|exists:post_categories,id',
                 'image' => 'image|mimes:png,jpg,jpeg,gif',
                 'status' => 'required|numeric|in:0,1',
-                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
+                'tags' => 'required|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی,]+$/u',
                 'published_at' => 'numeric'
             ];
         }

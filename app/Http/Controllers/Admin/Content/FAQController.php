@@ -40,7 +40,7 @@ class FAQController extends Controller
     {
         $inputs = $request->all();
         Faq::create($inputs);
-        return redirect()->route('admin.content.faq.index')->with('swal-success', 'پرسش با موفقیت حذف شد');
+        return redirect()->route('admin.content.faq.index')->with('swal-success', 'پرسش با موفقیت ایجاد شد');
     }
 
     /**
@@ -58,11 +58,11 @@ class FAQController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Faq $faq)
     {
-        //
+        return view('admin.content.faq.edit', compact('faq'));
     }
 
     /**
@@ -70,22 +70,26 @@ class FAQController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FaqRequest $request, Faq $faq)
     {
-        //
+        $inputs = $request->all();
+//        dd($inputs);
+        $faq->update($inputs);
+        return redirect()->route('admin.content.faq.index')->with('swal-success', 'پرسش با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faq $faq)
     {
-        //
+        $faq->delete();
+        return redirect()->route('admin.content.faq.index')->with('swal-success', 'پرسش با موفقیت جذف شد');
     }
 
     public function status(Faq $faq)
