@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('head-tag')
-<title>دسته بندی</title>
+<title>منو</title>
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
-      <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
-      <li class="breadcrumb-item font-size-12 active" aria-current="page"> سوالات متداول</li>
+      <li class="breadcrumb-item font-size-12"> <a href="#">بخش محتوا</a></li>
+      <li class="breadcrumb-item font-size-12 active" aria-current="page"> منو </li>
     </ol>
   </nav>
 
@@ -20,12 +20,12 @@
         <section class="main-body-container">
             <section class="main-body-container-header">
                 <h5>
-                سوالات متداول
+                منو
                 </h5>
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('admin.content.faq.create') }}" class="btn btn-info btn-sm">ایجاد سوال جدید</a>
+                <a href="{{ route('admin.content.menu.create') }}" class="btn btn-info btn-sm">ایجاد منو جدید</a>
                 <div class="max-width-16-rem">
                     <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                 </div>
