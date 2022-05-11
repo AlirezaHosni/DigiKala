@@ -164,14 +164,14 @@
                 url : url,
                 type : "GET",
                 success : function(response){
-                    if(response.commentable){
+                    if(response.status){
                         if(response.checked){
                             element.prop("checked", true);
-                            successToast("امکان درح کامنت با موفقیت فعال شد")
+                            successToast("پرسش با موفقیت فعال شد")
                         }
                         else{
                             element.prop("checked", false);
-                            successToast("امکان درح کامنت با موفقیت غیر فعال شد")
+                            successToast("پرسش با موفقیت غیر فعال شد")
                         }
                     }else{
                         element.prop("checked", elementValue);
@@ -224,6 +224,6 @@
         }
     </script>
 
-@include('admin.alerts.sweetalert.delete-confirm', ['className' => 'delete'])
+    @include('admin.alerts.sweetalert.delete-confirm', ['className' => 'delete'])
 
 @endsection

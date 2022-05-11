@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Content\FaqRequest;
+use App\Models\Content\Faq;
 use Illuminate\Http\Request;
 
 class FAQController extends Controller
@@ -10,11 +12,12 @@ class FAQController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.content.faq.index');
+        $faqs = Faq::orderBy('created_at', 'desc')->simplePaginate(15);
+        return view('admin.content.faq.index', compact('faqs'));
     }
 
     /**
@@ -31,11 +34,13 @@ class FAQController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FaqRequest $request)
     {
-        //
+        $inputs = $request->all();
+        Faq::create($inputs);
+        return redirect()->route('admin.content.faq.index')->with('swal-success', 'پرسش با موفقیت حذف شد');
     }
 
     /**
@@ -81,5 +86,29 @@ class FAQController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function status(Faq $faq)
+    {
+
+        $faq->status = $faq->status == 0 ? 1 : 0;
+        $result = $faq->save();
+
+        if($result){
+            if($faq->status == 0){
+                return response()->json([
+                    'status' => true,
+                    'checked' => false
+                ]);
+            }else{
+                return response()->json([
+                    'status' => true,
+                    'checked' => true
+                ]);
+            }
+
+        }else{
+            return response()->json(['status' => false ]);
+        }
     }
 }
