@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
+use App\Models\Content\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -10,17 +11,18 @@ class PageController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.content.page.index');
+        $pages = Page::orderBy('created_at', 'desc')->simplePaginate(15);
+        return view('admin.content.page.index', compact('pages'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -53,11 +55,11 @@ class PageController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        return view('admin.content.page.edit');
     }
 
     /**
@@ -81,5 +83,29 @@ class PageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function status(Page $page)
+    {
+
+        $page->status = $page->status == 0 ? 1 : 0;
+        $result = $page->save();
+
+        if($result){
+            if($page->status == 0){
+                return response()->json([
+                    'status' => true,
+                    'checked' => false
+                ]);
+            }else{
+                return response()->json([
+                    'status' => true,
+                    'checked' => true
+                ]);
+            }
+
+        }else{
+            return response()->json(['status' => false ]);
+        }
     }
 }
