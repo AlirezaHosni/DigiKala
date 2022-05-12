@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
+use App\Models\Content\Comment;
+use App\Models\Content\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -10,11 +12,12 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.content.comment.index');
+        $comments = Comment::where('commentable_type', Post::class)->orderBy('created_at', 'desc')->simplePaginate(15);
+        return view('admin.content.comment.index', compact('comments'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -42,11 +45,11 @@ class CommentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show()
+    public function show(Comment $comment)
     {
-        return view('admin.content.comment.show');
+        return view('admin.content.comment.show', compact('comment'));
     }
 
     /**
@@ -81,5 +84,29 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function status(Comment $comment)
+    {
+
+        $comment->status = $comment->status == 0 ? 1 : 0;
+        $result = $comment->save();
+
+        if($result){
+            if($comment->status == 0){
+                return response()->json([
+                    'status' => true,
+                    'checked' => false
+                ]);
+            }else{
+                return response()->json([
+                    'status' => true,
+                    'checked' => true
+                ]);
+            }
+
+        }else{
+            return response()->json(['status' => false ]);
+        }
     }
 }
