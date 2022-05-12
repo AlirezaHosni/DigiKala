@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Content\MenuRequest;
 use App\Models\Content\Menu;
 use Illuminate\Http\Request;
 
@@ -22,22 +23,25 @@ class MenuController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.content.menu.create');
+        $menus = Menu::where('parent_id', null)->get();
+        return view('admin.content.menu.create', compact('menus'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+        $result = Menu::create($inputs);
+        return redirect()->route('admin.content.menu.index')->with('swal-success', 'منو با موفقیت ایجاد شد');
     }
 
     /**
@@ -55,11 +59,12 @@ class MenuController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Menu $menu)
     {
-        //
+        $parent_menus = Menu::where('parent_id', null)->get()->except($menu->id);
+        return view('admin.content.menu.edit', compact('menu', 'parent_menus'));
     }
 
     /**
@@ -67,22 +72,25 @@ class MenuController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MenuRequest $request, Menu $menu)
     {
-        //
+        $inputs = $request->all();
+        $result = $menu->update($inputs);
+        return redirect()->route('admin.content.menu.index')->with('swal-success', 'منو با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        $result = $menu->delete();
+        return redirect()->route('admin.content.menu.index')->with('swal-success', 'منو با موفقیت حذف شد');
     }
 
     public function status(Menu $menu)

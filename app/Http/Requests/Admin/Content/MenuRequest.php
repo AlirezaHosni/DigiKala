@@ -13,7 +13,7 @@ class MenuRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:120|min:2|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
+            'url' => 'required|max:500|min:5|regex:/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-z-A-Z-0-9]\.[a-zA-Z]{2,}$/u',
+            'parent_id' => 'nullable|min:1|regex:/^[0-9]+$/u|exists:menus,id',
+            'status' => 'required|numeric|in:0,1',
         ];
     }
 }

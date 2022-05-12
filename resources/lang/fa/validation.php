@@ -160,6 +160,7 @@ return [
         "status"                    => "وضعیت",
         "summary"                   => "خلاصه",
         "question"                  => "پرسش",
-        "answer"                    => "پاسخ"
+        "answer"                    => "پاسخ",
+        "parent_id"                 => "والد"
     ],
 ];
