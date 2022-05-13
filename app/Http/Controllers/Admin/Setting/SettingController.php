@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin\setting;
+namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting\Setting;
+use Database\Seeders\SettingSeeder;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -10,11 +12,18 @@ class SettingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.setting.index');
+        $setting = Setting::first();
+        if (is_null($setting))
+        {
+            $default = new SettingSeeder();
+            $default->run();
+            $setting = Setting::first();
+        }
+        return view('admin.setting.index', compact('setting'));
     }
 
     /**
