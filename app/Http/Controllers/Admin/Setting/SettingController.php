@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Setting\SettingRequest;
-use App\Http\Services\Image\ImageService;
+use App\Http\Services\File\FileService;
 use App\Models\Setting\Setting;
 use Database\Seeders\SettingSeeder;
 use Illuminate\Http\Request;
@@ -77,7 +77,7 @@ class SettingController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SettingRequest $request, Setting $setting, ImageService $imageService)
+    public function update(SettingRequest $request, Setting $setting, FileService $imageService)
     {
         $inputs = $request->all();
 
