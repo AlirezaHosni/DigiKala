@@ -21,6 +21,7 @@ class CreatePublicMailFilesTable extends Migration
             $table->text('file-type');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
