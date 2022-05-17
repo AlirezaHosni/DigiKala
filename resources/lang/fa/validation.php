@@ -161,6 +161,9 @@ return [
         "summary"                   => "خلاصه",
         "question"                  => "پرسش",
         "answer"                    => "پاسخ",
-        "parent_id"                 => "والد"
+        "parent_id"                 => "والد",
+        "logo"                      => "لوگو",
+        "icon"                      => "آیکون",
+        "keywords"                  => "کلمات کلیدی",
     ],
 ];
