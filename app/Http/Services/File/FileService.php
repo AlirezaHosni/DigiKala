@@ -16,7 +16,7 @@ class FileService extends FileToolsService
         $this->provider();
 
         // save file
-        $result = $file->move(public_path($this->getFinalFileDirectory()), $this->getFileName());
+        $result = $file->move(public_path($this->getFinalFileDirectory()), $this->getFinalFileName());
 
         return $result ? $this->getFileAddress() : false ;
     }

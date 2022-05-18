@@ -12,7 +12,7 @@ class EmailFile extends Model
 
     protected $table = 'public_mail_files';
 
-    protected $fillable = ['public_mail_id', 'file-path', 'file-size', 'file-type', 'status'];
+    protected $fillable = ['public_mail_id', 'file_path', 'file_size', 'file_type', 'status'];
 
     public function email()
     {
