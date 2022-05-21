@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Setting\SettingRequest;
 use App\Http\Services\File\FileService;
+use App\Http\Services\Image\ImageService;
 use App\Models\Setting\Setting;
 use Database\Seeders\SettingSeeder;
 use Illuminate\Http\Request;
@@ -77,13 +78,13 @@ class SettingController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SettingRequest $request, Setting $setting, FileService $imageService)
+    public function update(SettingRequest $request, Setting $setting, ImageService $imageService)
     {
         $inputs = $request->all();
 
         if ($request->hasFile('logo')) {
             if (!empty($setting->logo)) {
-                $imageService->deleteDirectoryAndFiles($setting->logo);
+                $imageService->deleteImage($setting->logo);
             }
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'setting');
             $imageService->setImageName('logo');
@@ -95,7 +96,7 @@ class SettingController extends Controller
         }
         if ($request->hasFile('icon')) {
             if (!empty($setting->icon)) {
-                $imageService->deleteDirectoryAndFiles($setting->icon);
+                $imageService->deleteImage($setting->icon);
             }
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'setting');
             $imageService->setImageName('icon');
