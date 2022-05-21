@@ -49,15 +49,16 @@ class EmailFileController extends Controller
             $result = $fileService->moveToPublic($request->file('file'));
             // $result = $fileService->moveToStorage($request->file('file'));
             $fileFormat = $fileService->getFileFormat();
+            $inputs['public_mail_id'] = $email->id;
+            $inputs['file_path'] = $result;
+            $inputs['file_size'] = $fileSize;
+            $inputs['file_type'] = $fileFormat;
         }
         if($result === false)
         {
             return redirect()->route('admin.notify.email-file.index', $email->id)->with('swal-error', 'آپلود فایل با خطا مواجه شد');
         }
-        $inputs['public_mail_id'] = $email->id;
-        $inputs['file_path'] = $result;
-        $inputs['file_size'] = $fileSize;
-        $inputs['file_type'] = $fileFormat;
+
         $file = EmailFile::create($inputs);
         return redirect()->route('admin.notify.email-file.index', $email->id)->with('swal-success', 'فایل جدید شما با موفقیت ثبت شد');
     }
