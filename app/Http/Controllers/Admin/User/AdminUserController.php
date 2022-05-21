@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\AdminUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
@@ -14,7 +16,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        return view("admin.user.admin-user.index");
+        $admins = User::where('user_type', 1)->get();
+        return view('admin.user.admin-user.index', compact('admins'));
     }
 
     /**
@@ -24,7 +27,8 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view("admin.user.admin-user.create");
+        return view('admin.user.admin-user.create');
+
     }
 
     /**
@@ -33,9 +37,9 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminUserRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -83,3 +87,4 @@ class AdminUserController extends Controller
         //
     }
 }
+
