@@ -24,7 +24,7 @@ class TicketCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:120|min:2|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
+            'name' => 'required|max:120|min:2|regex:/^[a-zA-Z\-۰-۹0-9ء-ي. ا-ی]+$/u',
             'status' => 'required|numeric|in:0,1',
         ];
     }

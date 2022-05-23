@@ -349,7 +349,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         //admin
         Route::prefix('admin')->group(function(){
             Route::get('/', [TicketAdminController::class, 'index'])->name('admin.ticket.admin.index');
-            Route::get('/set/{admin}', [TicketAdminController::class, 'create'])->name('admin.ticket.admin.set');
+            Route::get('/set/{admin}', [TicketAdminController::class, 'set'])->name('admin.ticket.admin.set');
         });
 
         Route::get('/new-tickets', [TicketController::class, 'newTickets'])->name('admin.ticket.newTickets');
