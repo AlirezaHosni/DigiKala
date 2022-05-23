@@ -120,6 +120,22 @@
 
 
             <section class="sidebar-part-title">تیکت ها</section>
+            <a href="{{ route('admin.ticket.index') }}" class="sidebar-link">
+                <i class="fas fa-bars"></i>
+                <span>همه تیکت‌ها</span>
+            </a>
+            <a href="{{ route('admin.ticket.category.index') }}" class="sidebar-link">
+                <i class="fas fa-bars"></i>
+                <span>دسته‌یندی تیکت‌ها</span>
+            </a>
+            <a href="{{ route('admin.ticket.admin.index') }}" class="sidebar-link">
+                <i class="fas fa-bars"></i>
+                <span>ادمین‌های تیکت</span>
+            </a>
+            <a href="{{ route('admin.ticket.priority.index') }}" class="sidebar-link">
+                <i class="fas fa-bars"></i>
+                <span>الویت‌های تیکت</span>
+            </a>
             <a href="{{ route('admin.ticket.newTickets') }}" class="sidebar-link">
                 <i class="fas fa-bars"></i>
                 <span>تیکت های جدید</span>
