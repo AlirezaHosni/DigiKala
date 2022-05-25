@@ -13,7 +13,7 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -29,7 +29,8 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
-        return view('admin.user.role.create', compact('permissions'));    }
+        return view('admin.user.role.create', compact('permissions'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -63,9 +64,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        return view('admin.user.role.edit', compact('role'));
     }
 
     /**
@@ -75,9 +76,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, Role $role)
     {
-        //
+        $inputs = $request->all();
+        $role->update($inputs);
+        return redirect()->route('admin.user.role.index')->with('swal-success', 'نقش شما با موفقیت ویرایش شد');
     }
 
     /**
@@ -86,8 +89,27 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $result = $role->delete();
+        return redirect()->route('admin.user.role.index')->with('swal-success', 'نقش شما با موفقیت حذف شد');
+    }
+
+
+    public function permissionForm(Role $role)
+    {
+        $permissions = Permission::all();
+        return view('admin.user.role.set-permission', compact('role', 'permissions'));
+
+    }
+
+
+    public function permissionUpdate(RoleRequest $request, Role $role)
+    {
+        $inputs = $request->all();
+        $inputs['permissions'] = $inputs['permissions'] ?? [];
+        $role->permissions()->sync($inputs['permissions']);
+        return redirect()->route('admin.user.role.index')->with('swal-success', 'نقش جدید با موفقیت ویرایش شد');
+
     }
 }
