@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -10,11 +11,12 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        return view("admin.user.role.index");
+        $roles = Role::all();
+        return view('admin.user.role.index', compact('roles'));
     }
 
     /**
