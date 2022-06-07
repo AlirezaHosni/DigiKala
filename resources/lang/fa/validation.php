@@ -168,5 +168,12 @@ return [
         "amount"                    => "هزینه",
         "delivery_time"             => "زمان ارسال",
         "delivery_time_unit"        => "واحد زمان ارسال",
+        "brand_id"                  => "نام برند",
+        "weight"                    => "وزن",
+        "length"                    => "طول",
+        "width"                     => "عرض",
+        "height"                    => "ارتفاع",
+        "price"                     => "قیمت",
+        "introduction"              => "توضیحات",
     ],
 ];
