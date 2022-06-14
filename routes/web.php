@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Market\PaymentController;
 use App\Http\Controllers\Admin\Market\ProductColorController;
 use App\Http\Controllers\Admin\Market\ProductController;
 use App\Http\Controllers\Admin\Market\PropertyController;
+use App\Http\Controllers\Admin\Market\PropertyValueController;
 use App\Http\Controllers\Admin\Market\StoreController;
 use App\Http\Controllers\Admin\Notify\EmailController;
 use App\Http\Controllers\Admin\Notify\EmailFileController;
@@ -140,6 +141,11 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         Route::get('/color/{product}/create', [ProductColorController::class, 'create'])->name('admin.market.color.create');
         Route::post('/color/{product}/store', [ProductColorController::class, 'store'])->name('admin.market.color.store');
         Route::delete('/color/destroy/{product}/{productColor}', [ProductColorController::class, 'destroy'])->name('admin.market.color.destroy');
+        // value
+        Route::get('/value/{categoryAttribute}', [PropertyValueController::class, 'index'])->name('admin.market.value.index');
+        Route::get('/value/{categoryAttribute}/create', [PropertyValueController::class, 'create'])->name('admin.market.value.create');
+        Route::post('/value/{categoryAttribute}/store', [PropertyValueController::class, 'store'])->name('admin.market.value.store');
+        Route::delete('/value/destroy/{categoryAttribute}/{value}', [PropertyValueController::class, 'destroy'])->name('admin.market.color.destroy');
         //gallery
         Route::get('/gallery/{product}', [GalleryController::class, 'index'])->name('admin.market.gallery.index');
         Route::get('/gallery/create/{product}', [GalleryController::class, 'create'])->name('admin.market.gallery.create');
