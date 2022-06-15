@@ -45,10 +45,10 @@ class CategoryController extends Controller
         {
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'product-category');
             $result = $imageService->createIndexAndSave($request->file('image'));
-        }
-        if($result === false)
-        {
-            return redirect()->route('admin.market.category.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+            if($result === false)
+            {
+                return redirect()->route('admin.market.category.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+            }
         }
         $inputs['image'] = $result;
         $productCategory = ProductCategory::create($inputs);

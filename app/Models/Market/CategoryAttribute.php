@@ -9,7 +9,7 @@ class CategoryAttribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type', 'unit', 'category_type'];
+    protected $fillable = ['name', 'type', 'unit', 'category_type', 'category_id'];
 
     public function category()
     {
@@ -18,6 +18,6 @@ class CategoryAttribute extends Model
 
     public function values()
     {
-        return $this->hasMany(CategoryAttribute::class);
+        return $this->hasMany(CategoryValue::class, 'category_attribute_id');
     }
 }

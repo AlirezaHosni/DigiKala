@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('weight', 10, 2);
             $table->decimal('length', 10, 1)->comment('cm units');
             $table->decimal('width', 10, 1)->comment('cm units');
+            $table->decimal('height', 10, 1)->comment('cm units');
             $table->decimal('price', 20, 3);
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('marketable')->default(1)->comment('1 => marketable, 0 => is not marketable');
@@ -34,7 +35,7 @@ class CreateProductsTable extends Migration
             $table->timestamp('published_at');
             $table->timestamps();
             $table->softDeletes();
-            
+
         });
     }
 

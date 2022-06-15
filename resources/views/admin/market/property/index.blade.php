@@ -51,7 +51,7 @@
                             <td>{{ $category_attribute->unit }}</td>
                             <td>{{ $category_attribute->category->name }}</td>
                             <td class="width-22-rem text-left">
-                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> ویژگی ها</a>
+                                <a href="{{ route('admin.market.value.index', $category_attribute->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> ویژگی ها</a>
                                 <a href="{{ route('admin.market.property.edit', $category_attribute->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <form class="d-inline" action="{{ route('admin.market.property.destroy', $category_attribute->id) }}" method="post">
                                     @csrf

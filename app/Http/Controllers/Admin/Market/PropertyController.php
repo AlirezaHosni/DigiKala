@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Market;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Market\CategoryAttributeRequest;
 use App\Models\Market\CategoryAttribute;
 use App\Models\Market\ProductCategory;
 use Illuminate\Http\Request;
