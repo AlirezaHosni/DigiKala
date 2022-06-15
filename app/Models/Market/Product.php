@@ -54,5 +54,10 @@ class Product extends Model
         return $this->hasMany(CategoryAttribute::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
 }
 
