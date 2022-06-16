@@ -178,6 +178,9 @@ return [
         "unit"                      => "واحد اندازه‌گیری",
         "receiver"                  => "تحویل گیرنده",
         "deliverer"                 => "تحویل دهنده",
-        "marketable_number"         => "تعداد",
+        "percentage"                => "درصد",
+        "discount_ceiling"          => "سقف تخفیف",
+        "minimal_order_amount"      => "حداقل خرید",
+        "product_id"                => "کالا",
     ],
 ];

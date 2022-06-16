@@ -10,8 +10,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
       <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
-      <li class="breadcrumb-item font-size-12"> <a href="#">تخفیف</a></li>
-      <li class="breadcrumb-item font-size-12"> <a href="#">کوپن تخفیف</a></li>
+      <li class="breadcrumb-item font-size-12"> <a href="#">برند</a></li>
       <li class="breadcrumb-item font-size-12 active" aria-current="page"> ایجاد کوپن تخفیف</li>
     </ol>
   </nav>
@@ -22,7 +21,7 @@
         <section class="main-body-container">
             <section class="main-body-container-header">
                 <h5>
-                ایجاد کوپن تخفیف
+                  ایجاد کوپن تخفیف
                 </h5>
             </section>
 
@@ -42,23 +41,23 @@
                         </section>
                         <section class="col-12 col-md-6">
                             <div class="form-group">
+                                <label for="">نوع کوپن</label>
+                                <select name="" id="" class="form-control form-control-sm">
+                                    <option value="">عمومی</option>
+                                    <option value="">خصوصی</option>
+                                </select>
+                            </div>
+                        </section>
+                        <section class="col-12 col-md-6">
+                            <div class="form-group">
                                 <label for="">درصد تخفیف</label>
                                 <input type="text" class="form-control form-control-sm">
                             </div>
                         </section>
                         <section class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="">سقف تخفیف</label>
+                                <label for="">حداکثر تخفیف</label>
                                 <input type="text" class="form-control form-control-sm">
-                            </div>
-                        </section>
-                        <section class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="">نوع کوپن</label>
-                                <select class="form-control form-control-sm">
-                                    <option value="">عمومی</option>
-                                    <option value="">خصوصی</option>
-                                </select>
                             </div>
                         </section>
                         <section class="col-12 col-md-6">
@@ -79,6 +78,7 @@
                                 <input type="text" class="form-control form-control-sm">
                             </div>
                         </section>
+
 
                         <section class="col-12">
                             <button class="btn btn-primary btn-sm">ثبت</button>
