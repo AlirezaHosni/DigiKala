@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->tinyInteger('type')->default(0)->comment('0 => online, 1 => offline, 2 => cash');
             $table->unsignedBigInteger('paymentable_id');
-            $table->string('paymentable_type');
+            $table->string('paymentable_type')->comment('0 => notPaid, 1 => paid, 2 => cancel, 3 => returned ');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
