@@ -182,5 +182,8 @@ return [
         "discount_ceiling"          => "سقف تخفیف",
         "minimal_order_amount"      => "حداقل خرید",
         "product_id"                => "کالا",
+        "user_id"                   => "کاربر",
+        "code"                      => "کد تخفیف",
+        "type"                      => "نوع کوپن",
     ],
 ];
