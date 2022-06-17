@@ -29,7 +29,8 @@ class OrderController extends Controller
     }
     public function all()
     {
-        return view('admin.market.order.index');
+        $orders = Order::all();
+        return view('admin.market.order.index', compact('orders'));
     }
     public function show()
     {
