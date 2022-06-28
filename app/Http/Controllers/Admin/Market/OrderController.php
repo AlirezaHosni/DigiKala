@@ -17,35 +17,42 @@ class OrderController extends Controller
         }
         return view('admin.market.order.index', compact('orders'));
     }
+
     public function sending()
     {
         $orders = Order::where('delivery_status', 1)->get();
         return view('admin.market.order.index', compact('orders'));
     }
+
     public function unpaid()
     {
         $orders = Order::where('payment_status', 0)->get();
         return view('admin.market.order.index', compact('orders'));
     }
+
     public function canceled()
     {
         $orders = Order::where('order_status', 4)->get();
         return view('admin.market.order.index', compact('orders'));
     }
+
     public function returned()
     {
         $orders = Order::where('order_status', 5)->get();
         return view('admin.market.order.index', compact('orders'));
     }
+
     public function all()
     {
         $orders = Order::all();
         return view('admin.market.order.index', compact('orders'));
     }
-    public function show()
+
+    public function show(Order $order)
     {
-        return view('admin.market.order.index');
+        return view('admin.market.order.show', compact('order'));
     }
+
     public function changeSendStatus(Order $order)
     {
         switch ($order->delivery_status){
@@ -64,6 +71,7 @@ class OrderController extends Controller
         $order->save();
         return back();
     }
+
     public function changeOrderStatus(Order $order)
     {
         switch ($order->order_status){
@@ -88,6 +96,7 @@ class OrderController extends Controller
         $order->save();
         return back();
     }
+
     public function cancelOrder(Order $order)
     {
         $order->order_status = 4;
