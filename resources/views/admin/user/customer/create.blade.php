@@ -129,7 +129,7 @@
                         <section class="col-12 col-md-6 my-2">
                             <div class="form-group">
                                 <label for="activation">وضعیت فعالسازی</label>
-                                <select name="activation" id="" class="form-control form-control-sm" id="activation">
+                                <select name="activation" class="form-control form-control-sm" id="activation">
                                     <option value="0" @if(old('activation') == 0) selected @endif>غیرفعال</option>
                                     <option value="1" @if(old('activation') == 1) selected @endif>فعال</option>
                                 </select>
@@ -145,8 +145,10 @@
                         <section class="col-12">
                             <button class="btn btn-primary btn-sm">ثبت</button>
                         </section>
+
                     </section>
                 </form>
+        </section>
         </section>
     </section>
 </section>

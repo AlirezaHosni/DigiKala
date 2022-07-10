@@ -408,6 +408,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         Route::delete('/destroy/{setting}', [SettingController::class, 'destroy'])->name('admin.setting.destroy');
 
     });
+    Route::post('/notification/read-all', [\App\Http\Controllers\Admin\NotificationController::class, 'readAll'])->name('admin.Fnotification.readAll');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
