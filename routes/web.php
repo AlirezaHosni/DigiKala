@@ -411,6 +411,11 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
     Route::post('/notification/read-all', [\App\Http\Controllers\Admin\NotificationController::class, 'readAll'])->name('admin.Fnotification.readAll');
 });
 
+
+Route::get('/', function (){
+    return view('customer.home');
+})->name('customer.home');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

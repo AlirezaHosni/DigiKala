@@ -18,7 +18,7 @@ class CreateCopansTable extends Migration
             $table->string('code');
             $table->string('amount');
             $table->tinyInteger('amount_type')->default(0)->comment('0 => percentage, 1 price unit');
-            $table->unsignedBigInteger('discount_ceilling')->nullable();
+            $table->unsignedBigInteger('discount_ceiling')->nullable();
             $table->tinyInteger('type')->default(0)->comment('0 => each user can use this one time, 1 only one user can use this');
             $table->tinyInteger('status')->default(0);
             $table->timestamp('start_date')->useCurrent();
