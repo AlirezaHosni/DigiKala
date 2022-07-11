@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\Market\ProductController;
 use App\Http\Controllers\Admin\Market\PropertyController;
 use App\Http\Controllers\Admin\Market\PropertyValueController;
 use App\Http\Controllers\Admin\Market\StoreController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\Notify\EmailController;
 use App\Http\Controllers\Admin\Notify\EmailFileController;
 use App\Http\Controllers\Admin\Notify\SMSController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Admin\User\CustomerController;
 use App\Http\Controllers\Admin\User\PermissionController;
 use App\Http\Controllers\Admin\User\RoleController;
+use App\Http\Controllers\Auth\Customer\LoginRegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -408,9 +410,12 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         Route::delete('/destroy/{setting}', [SettingController::class, 'destroy'])->name('admin.setting.destroy');
 
     });
-    Route::post('/notification/read-all', [\App\Http\Controllers\Admin\NotificationController::class, 'readAll'])->name('admin.Fnotification.readAll');
+    Route::post('/notification/read-all', [NotificationController::class, 'readAll'])->name('admin.Fnotification.readAll');
 });
 
+Route::namespace('Auth')->group(function (){
+    Route::get('login-register', [LoginRegisterController::class, 'loginRegisterForm'])->name('auth.customer.login-register-form');
+});
 
 Route::get('/', function (){
     return view('customer.home');
