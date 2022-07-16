@@ -28,7 +28,8 @@ class LoginRegisterController extends Controller
             if(empty($user)){
                 $newUser['email'] = $inputs['id'];
             }
-        }//check id is email or not
+        }
+        //check id is mobile or not
         elseif (preg_match('/^[\+98|098|98|0]9\d{9}$', $inputs['id']))
         {
             $type = 0; // 0 => email
@@ -64,5 +65,12 @@ class LoginRegisterController extends Controller
         ];
 
         Otp::create($otpInputs);
+
+        // send sms or email
+        if ($type == 0){
+
+        }else{
+
+        }
     }
 }
