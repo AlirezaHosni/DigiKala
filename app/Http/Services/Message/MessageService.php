@@ -17,5 +17,3 @@ class MessageService
         return $this->message->fire();
     }
 }
-
-

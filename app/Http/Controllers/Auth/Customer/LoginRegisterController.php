@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Customer\LoginRegisterRequest;
+use App\Http\Services\Message\MessageService;
+use App\Http\Services\Message\SMS\SmsService;
 use App\Models\Otp;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,7 +32,7 @@ class LoginRegisterController extends Controller
             }
         }
         //check id is mobile or not
-        elseif (preg_match('/^[\+98|098|98|0]9\d{9}$', $inputs['id']))
+        elseif (preg_match('/^[\+98|098|98|0]9\d{9}$/', $inputs['id']))
         {
             $type = 0; // 0 => email
             // all mobile numbers are in one format 9** *** ****
@@ -68,9 +70,17 @@ class LoginRegisterController extends Controller
 
         // send sms or email
         if ($type == 0){
+            $smsService = new SmsService();
+            $smsService->setFrom(config('sms.otp_from'));
+            $smsService->setTo(['0' . $user->mobile]);
+            $smsService->setText("مجموعه آمازون\n کد تایید:$otpCode");
+            $smsService->setIsFlash(true);
 
+            $messageService = new MessageService($smsService);
         }else{
 
         }
+
+        $messageService->send();
     }
 }
